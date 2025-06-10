@@ -35,8 +35,6 @@ public class CarroController {
         return "index";
     }
 
-    // ... (dentro da classe CarroController)
-
     @GetMapping("/deletar/{id}")
     public String deletarPage(@PathVariable Long id) {
         service.delete(id);
@@ -50,8 +48,6 @@ public class CarroController {
         // Após restaurar, faz sentido voltar para a página de admin
         return "redirect:/admin";
     }
-
-    // ... (dentro da classe CarroController)
 
     @GetMapping("/editar/{id}")
     public String getEditarPage(@PathVariable Long id, Model model) {
@@ -69,8 +65,6 @@ public class CarroController {
             return "redirect:/admin";
         }
     }
-
-    // ... (dentro da classe CarroController)
 
     @GetMapping("/admin")
     public String getAdminPage(Model model) {
@@ -95,8 +89,6 @@ public class CarroController {
         // Retorna o nome do novo arquivo HTML que vamos criar
         return "form-cadastro";
     }
-
-    // ... (dentro da classe CarroController)
 
     @PostMapping("/salvar")
     public String doSalvar(@ModelAttribute @Valid Carro carro, BindingResult bindingResult) {

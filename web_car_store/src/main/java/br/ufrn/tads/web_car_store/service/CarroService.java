@@ -19,7 +19,7 @@ public class CarroService {
         this.repository = repository;
     }
 
-    // Método para listar apenas os carros não deletados (isDeleted == null)
+    //Método para listar apenas os carros não deletados (isDeleted == null)
     public List<Carro> findAllNonDeleted() {
         // Pega todos os carros do banco
         List<Carro> todosOsCarros = repository.findAll();

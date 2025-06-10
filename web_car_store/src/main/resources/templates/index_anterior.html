@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Carros</title>
+    <!-- Futuramente, aqui entrará o link para o CSS do Bootstrap -->
+</head>
+<body>
+
+<h1>Nossos Carros Disponíveis</h1>
+
+<a th:href="@{/cadastro}">Cadastrar Novo Carro</a>
+<br>
+
+<!-- Link para ver o carrinho -->
+<a th:href="@{/verCarrinho}">Ver Carrinho (0 itens)</a>
+<hr>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Imagem</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano</th>
+        <th>Preço</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--
+      Thymeleaf vai repetir esta linha (tr) para cada 'carro' na lista de 'carros'
+      que veio do Controller.
+    -->
+    <tr th:each="carro : ${carros}">
+        <td>
+            <!-- Exibe a imagem do carro -->
+            <!-- Supondo que as imagens estarão em /static/images/ -->
+            <img th:src="@{'/images/' + ${carro.imageUrl}}" alt="Imagem do Carro" width="100">
+        </td>
+        <td th:text="${carro.marca}">Toyota</td>
+        <td th:text="${carro.modelo}">Corolla</td>
+        <td th:text="${carro.anoFabricacao}">2023</td>
+        <td th:text="${'R$ ' + #numbers.formatDecimal(carro.preco, 1, 'POINT', 2, 'COMMA')}">R$ 150.000,00</td>
+        <td>
+            <!-- Link para adicionar o carro ao carrinho -->
+            <a th:href="@{/adicionarCarrinho/{id}(id=${carro.id})}">Adicionar ao Carrinho</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
