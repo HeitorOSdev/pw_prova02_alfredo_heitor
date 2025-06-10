@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Carro</title>
+</head>
+<body>
+<h1>Formulário de Cadastro de Carro</h1>
+<hr>
+
+<form th:action="@{/salvar}" method="post" th:object="${carro}">
+
+  <input type="hidden" th:field="*{id}">
+
+  <label for="marca">Marca:</label><br>
+  <input type="text" id="marca" th:field="*{marca}" placeholder="Ex: Toyota">
+  <br><br>
+
+  <label for="modelo">Modelo:</label><br>
+  <input type="text" id="modelo" th:field="*{modelo}" placeholder="Ex: Corolla">
+  <br><br>
+
+  <label for="ano">Ano de Fabricação:</label><br>
+  <input type="number" id="ano" th:field="*{anoFabricacao}" placeholder="Ex: 2023">
+  <br><br>
+
+  <label for="preco">Preço:</label><br>
+  <input type="text" id="preco" th:field="*{preco}" placeholder="Ex: 150000.00">
+  <br><br>
+
+  <button type="submit">Salvar Carro</button>
+</form>
+
+<hr>
+<a th:href="@{/index}">Voltar para a lista</a>
+
+</body>
+</html>
