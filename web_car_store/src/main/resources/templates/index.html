@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: pagina-base(content = ~{::conteudo-da-pagina})}">
+      th:replace="~{layout :: layout(title = ~{::title}, content = ~{::section})}">
+<head>
+    <title>Web Car Store - Página Inicial</title>
+</head>
 <body>
-    <!-- QUESTÃO 3 ... INDEX ! -->
-    <div th:fragment="conteudo-da-pagina">
+<section>
+    <div class="section">
+        <div class="container">
+            <div class="row">
 
-        <h1>Nossos Carros Disponíveis</h1>
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title">Nossos Veículos</h3>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
 
-        <a th:href="@{/cadastro}">Cadastrar Novo Carro</a>
-        <br>
-
-        <!-- Link para ver o carrinho -->
-        <a th:href="@{/verCarrinho}">Ver Carrinho (0 itens)</a>
-        <hr>
-
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Imagem</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Ano</th>
-                <th>Preço</th>
-                <th>Ação</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!--
-              Thymeleaf vai repetir esta linha (tr) para cada 'carro' na lista de 'carros'
-              que veio do Controller.
-            -->
-            <tr th:each="carro : ${carros}">
-                <td>
-                    <!-- Exibe a imagem do carro -->
-                    <!-- Supondo que as imagens estarão em /static/images/ -->
-                    <img th:src="@{'/images/' + ${carro.imageUrl}}" alt="Imagem do Carro" width="100">
-                </td>
-                <td th:text="${carro.marca}">Toyota</td>
-                <td th:text="${carro.modelo}">Corolla</td>
-                <td th:text="${carro.anoFabricacao}">2023</td>
-                <td th:text="${'R$ ' + #numbers.formatDecimal(carro.preco, 1, 'POINT', 2, 'COMMA')}">R$ 150.000,00</td>
-                <td>
-                    <!-- Link para adicionar o carro ao carrinho -->
-                    <a th:href="@{/adicionarCarrinho/{id}(id=${carro.id})}">Adicionar ao Carrinho</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
+                                    <div th:each="carro : ${carros}" class="product">
+                                        <div class="product-img">
+                                            <img th:src="@{'/images/' + ${carro.imageUrl}}" alt="Imagem do Carro">
+                                            <div class="product-label">
+                                                <span class="new">NOVO</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category" th:text="${carro.marca}">Marca</p>
+                                            <h3 class="product-name"><a href="#" th:text="${carro.modelo}">Modelo</a></h3>
+                                            <h4 class="product-price" th:text="${'R$ ' + #numbers.formatDecimal(carro.preco, 1, 'POINT', 2, 'COMMA')}">R$ 99.000,00</h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a th:href="@{/adicionarCarrinho/{id}(id=${carro.id})}" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="slick-nav-1" class="products-slick-nav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!--/ QUESTÃO 3 ... INDEX ! -->
-
+</section>
 </body>
-<html></html>
+</html>

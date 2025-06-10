@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(title = ~{::title}, content = ~{::section})}">
+<head>
+    <title>Seu Carrinho de Compras</title>
+</head>
+<body>
+<section>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <h3>Seu Carrinho</h3>
+                <hr>
+
+                <div th:if="${carrinho != null and not #lists.isEmpty(carrinho)}">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Preço</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="carro : ${carrinho}">
+                            <td><img th:src="@{'/images/' + ${carro.imageUrl}}" alt="Imagem" width="100"></td>
+                            <td th:text="${carro.marca}">Marca</td>
+                            <td th:text="${carro.modelo}">Modelo</td>
+                            <td th:text="${'R$ ' + #numbers.formatDecimal(carro.preco, 1, 'POINT', 2, 'COMMA')}">Preço</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h4>Total: <span th:text="${'R$ ' + #numbers.formatDecimal(total, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</span></h4>
+                    <br>
+                    <a th:href="@{/finalizarCompra}" class="primary-btn order-submit">Finalizar Compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(title = ~{::title}, content = ~{::section})}">
 <head>
-    <meta charset="UTF-8">
-    <title>Administração da Loja</title>
+    <title>Página de Administração</title>
 </head>
 <body>
-<h1>Página de Administração</h1>
-<p>Aqui você pode gerenciar todos os carros cadastrados.</p>
+<section>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <h3>Página de Administração</h3>
+                <p>Gerenciamento de todos os carros cadastrados.</p>
 
-<a th:href="@{/cadastro}">Cadastrar Novo Carro</a>
-<hr>
+                <a th:href="@{/cadastro}" class="btn btn-success mb-3">Cadastrar Novo Carro</a>
+                <hr>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Status</th>
-        <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="carro : ${carros}">
-        <td th:text="${carro.id}">1</td>
-        <td th:text="${carro.marca}">Marca</td>
-        <td th:text="${carro.modelo}">Modelo</td>
-        <td>
-            <span th:if="${carro.isDeleted == null}">Ativo</span>
-            <span th:unless="${carro.isDeleted == null}" style="color: red;">Deletado</span>
-        </td>
-        <td>
-
-            <a th:href="@{/editar/{id}(id=${carro.id})}">Editar</a>
-
-            <a th:if="${carro.isDeleted == null}" th:href="@{/deletar/{id}(id=${carro.id})}">Deletar</a>
-
-            <a th:unless="${carro.isDeleted == null}" th:href="@{/restaurar/{id}(id=${carro.id})}">Restaurar</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<hr>
-<a th:href="@{/index}">Voltar para a Loja</a>
-
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="carro : ${carros}">
+                        <td th:text="${carro.id}">1</td>
+                        <td th:text="${carro.marca}">Marca</td>
+                        <td th:text="${carro.modelo}">Modelo</td>
+                        <td>
+                            <span th:if="${carro.isDeleted == null}" class="label label-success">Ativo</span>
+                            <span th:unless="${carro.isDeleted == null}" class="label label-danger">Deletado</span>
+                        </td>
+                        <td>
+                            <a th:href="@{/editar/{id}(id=${carro.id})}" class="btn btn-warning btn-sm">Editar</a>
+                            <a th:if="${carro.isDeleted == null}" th:href="@{/deletar/{id}(id=${carro.id})}" class="btn btn-danger btn-sm">Deletar</a>
+                            <a th:unless="${carro.isDeleted == null}" th:href="@{/restaurar/{id}(id=${carro.id})}" class="btn btn-info btn-sm">Restaurar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

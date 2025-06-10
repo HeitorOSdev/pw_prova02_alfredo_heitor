@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(title = ~{::title}, content = ~{::section})}">
 <head>
-  <meta charset="UTF-8">
-  <title>Cadastro de Carro</title>
+  <title>Formulário de Carro</title>
 </head>
 <body>
-<h1>Formulário de Cadastro de Carro</h1>
-<hr>
+<section>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h3>Formulário de Carro</h3>
+          <hr>
 
-<form th:action="@{/salvar}" method="post" th:object="${carro}">
+          <form th:action="@{/salvar}" method="post" th:object="${carro}">
+            <input type="hidden" th:field="*{id}">
 
-  <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+              <label for="marca">Marca:</label>
+              <input type="text" id="marca" class="form-control" th:field="*{marca}" placeholder="Ex: Toyota">
+            </div>
 
-  <label for="marca">Marca:</label><br>
-  <input type="text" id="marca" th:field="*{marca}" placeholder="Ex: Toyota">
-  <br><br>
+            <div class="form-group">
+              <label for="modelo">Modelo:</label>
+              <input type="text" id="modelo" class="form-control" th:field="*{modelo}" placeholder="Ex: Corolla">
+            </div>
 
-  <label for="modelo">Modelo:</label><br>
-  <input type="text" id="modelo" th:field="*{modelo}" placeholder="Ex: Corolla">
-  <br><br>
+            <div class="form-group">
+              <label for="ano">Ano de Fabricação:</label>
+              <input type="number" id="ano" class="form-control" th:field="*{anoFabricacao}" placeholder="Ex: 2023">
+            </div>
 
-  <label for="ano">Ano de Fabricação:</label><br>
-  <input type="number" id="ano" th:field="*{anoFabricacao}" placeholder="Ex: 2023">
-  <br><br>
+            <div class="form-group">
+              <label for="preco">Preço:</label>
+              <input type="text" id="preco" class="form-control" th:field="*{preco}" placeholder="Ex: 150000.00">
+            </div>
 
-  <label for="preco">Preço:</label><br>
-  <input type="text" id="preco" th:field="*{preco}" placeholder="Ex: 150000.00">
-  <br><br>
-
-  <button type="submit">Salvar Carro</button>
-</form>
-
-<hr>
-<a th:href="@{/index}">Voltar para a lista</a>
-
+            <button type="submit" class="primary-btn order-submit">Salvar Carro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>
