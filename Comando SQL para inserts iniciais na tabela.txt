@@ -1,0 +1,7 @@
+INSERT INTO carro (ano_fabricacao, image_url, marca, modelo, preco)
+VALUES 
+(2015, 'Veyron.png', 'Bugatti', 'Veyron', 10000000), 
+(2002, 'Supra.png', 'Toyota', 'Supra', 5500000),
+(2000, 'BMW.jpg', 'BMW', '312I', 412000),
+(1964, '911.png', 'Porsche', '911', 390000),
+(1964, '250 GTO.png', 'Ferrari', '250 GTO', 7500000);

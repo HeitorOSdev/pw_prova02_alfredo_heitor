@@ -23,7 +23,7 @@ public class CarroService {
     public List<Carro> findAllNonDeleted() {
         // Pega todos os carros do banco
         List<Carro> todosOsCarros = repository.findAll();
-        // Filtra a lista para retornar apenas os que não têm data de deleção
+        // Filtra a lista para retornar apenas os que não têm a data de deletado (caso tenha sido deletado)
         return todosOsCarros.stream()
                 .filter(carro -> carro.getIsDeleted() == null)
                 .collect(Collectors.toList());
@@ -60,7 +60,7 @@ public class CarroService {
     public Carro save(Carro c) {
         // Regra de negócio da Questão 5: selecionar imagem aleatória se for um novo cadastro
         if (c.getId() == null) {
-            List<String> imagensDisponiveis = List.of("carro1.jpg", "carro2.jpg", "carro3.png"); // Use os nomes dos seus arquivos
+            List<String> imagensDisponiveis = List.of("250 GTO.png", "911.png", "BMW.jpg", "Corvette.png", "DB5.png", "F1.png", "GT40.png", "Mercedes.png", "Miura.png", "Nissan.jpg", "Supra.png", "Veyron.png"); // Use os nomes dos seus arquivos
             Random random = new Random();
             int indiceAleatorio = random.nextInt(imagensDisponiveis.size());
             c.setImageUrl(imagensDisponiveis.get(indiceAleatorio));

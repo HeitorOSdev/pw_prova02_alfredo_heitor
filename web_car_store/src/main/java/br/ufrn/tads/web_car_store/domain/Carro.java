@@ -35,4 +35,20 @@ public class Carro {
     private String imageUrl; // Atributo obrigatório
 
     private Date isDeleted; // Atributo obrigatório
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setIsDeleted(Date isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Date getIsDeleted() {
+        return isDeleted;
+    }
 }
