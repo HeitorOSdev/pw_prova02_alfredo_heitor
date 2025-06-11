@@ -15,6 +15,7 @@
 
           <form th:action="@{/salvar}" method="post" th:object="${carro}">
             <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{imageUrl}">
 
             <div class="form-group">
               <label for="marca">Marca:</label>

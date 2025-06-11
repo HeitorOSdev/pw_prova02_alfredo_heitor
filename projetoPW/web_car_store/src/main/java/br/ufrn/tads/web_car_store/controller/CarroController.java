@@ -40,6 +40,11 @@ public class CarroController {
     public String getIndex(Model model) {
         List<Carro> carros = service.findAllNonDeleted();
         model.addAttribute("carros", carros);
+
+        if(service.findAll().isEmpty()){
+
+        };
+
         return "index";
     }
 

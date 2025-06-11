@@ -51,4 +51,8 @@ public class Carro {
     public Date getIsDeleted() {
         return isDeleted;
     }
+
+    public Double getPreco() {
+        return preco;
+    }
 }
